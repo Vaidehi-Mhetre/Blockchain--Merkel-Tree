@@ -1,0 +1,54 @@
+import java.util.ArrayList;
+import java.util.Scanner; 
+
+public class Merkle_Tree 
+{
+	@SuppressWarnings("resource")
+	public static void main(String[] args)
+	{
+		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Please enter the number of transactions in the tree ");
+		String input = scan.nextLine();
+		int num = Integer.parseInt(input);
+		String power="";
+		
+		while(num>0)
+		{
+			int count=1;
+			while((int)Math.pow(2,count)<=num )
+			
+			{
+			count ++;	
+			
+			}
+			power+=count-1;
+			num= num-(int)Math.pow(2,count-1);
+		}
+
+		
+		ArrayList<String> hash =new ArrayList<String>();
+		int cntr=0;
+		for(int i=0;i< power.length();i++)
+		{
+			String temp="h(";
+			char z=power.charAt(i);
+			int y=Character.getNumericValue(z);  
+			int loop = (int) Math.pow(2, y);
+			for(double j=0;j< loop;j++)
+			{
+				temp+=" "+cntr;
+				cntr++;
+					
+			}
+		hash.add(temp+")");
+		}
+		
+		System.out.println("The Hash values are:");
+		for(int i=0;i<hash.size();i++)
+		System.out.print("\n"+hash.get(i));
+	}	
+}
+				
+			
+
